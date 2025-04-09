@@ -6,9 +6,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
 
 import com.yassine.gamess.entities.Game;
+import com.yassine.gamess.entities.Genre;
 import com.yassine.gamess.repos.GameRepository;
 import com.yassine.gamess.service.GameService;
 
@@ -54,17 +54,79 @@ class GamessApplicationTests {
 		}
 	}
 
+//	@Test
+//	public void testFindByNomGameContains() {
+//		Page<Game> games = gameService.getAllGamesParPage(0, 2);
+//		System.out.println(games.getSize());
+//		System.out.println(games.getTotalElements());
+//		System.out.println(games.getTotalPages());
+//		games.getContent().forEach(g -> {
+//			System.out.println(g.toString());
+//		});
+//		/*
+//		 * ou bien for (Produit p : prods) { System.out.println(p); }
+//		 */
+//	}
+
 	@Test
-	public void testFindByNomGameContains() {
-		Page<Game> games = gameService.getAllGamesParPage(0, 2);
-		System.out.println(games.getSize());
-		System.out.println(games.getTotalElements());
-		System.out.println(games.getTotalPages());
-		games.getContent().forEach(g -> {
-			System.out.println(g.toString());
-		});
-		/*
-		 * ou bien for (Produit p : prods) { System.out.println(p); }
-		 */
+	public void testFindGameByNom() {
+		List<Game> gams = gameRepository.findByNomGame("madmax");
+		for (Game g : gams) {
+			System.out.println(g);
+		}
 	}
+
+	@Test
+	public void testFindGameByNomContains() {
+		List<Game> gams = gameRepository.findByNomGameContains("mad");
+		for (Game g : gams) {
+			System.out.println(g);
+		}
+	}
+
+	@Test
+	public void testfindByNomPrix() {
+		List<Game> gams = gameRepository.findByNomPrix("madmax", 1.0);
+		for (Game g : gams) {
+			System.out.println(g);
+		}
+	}
+
+	@Test
+	public void testfindByGenre() {
+		Genre gen = new Genre();
+		gen.setIdGen(2L);
+		List<Game> gams = gameRepository.findByGenre(gen);
+		for (Game g : gams) {
+			System.out.println(g);
+		}
+	}
+
+	@Test
+	public void findByGenreIdGen() {
+		List<Game> gams = gameRepository.findByGenreIdGen(2L);
+		for (Game g : gams) {
+			System.out.println(g);
+		}
+	}
+	
+	@Test
+	public void testfindByOrderByNomGameAsc()
+	{
+	List<Game>  gams =  gameRepository.findByOrderByNomGameAsc();	 
+		for (Game g : gams)
+		{
+			System.out.println(g);
+		}
+	 }
+	
+	@Test
+	public void testTrierGamesNomsPrix() {
+	List<Game>  gams = gameRepository.trierGamesNomsPrix();	 
+		for (Game g : gams)
+		{
+			System.out.println(g);
+		}
+	}
+
 }

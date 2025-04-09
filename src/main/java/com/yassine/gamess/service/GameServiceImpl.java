@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.yassine.gamess.entities.Game;
+import com.yassine.gamess.entities.Genre;
 import com.yassine.gamess.repos.GameRepository;
 
 @Service
@@ -49,5 +50,34 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public Page<Game> getAllGamesParPage(int page, int size) {
 		return gameRepository.findAll(PageRequest.of(page, size));
+	}
+	
+	@Override
+	public List<Game> findByNomGame(String nom) {
+		return gameRepository.findByNomGame(nom);
+	}
+	@Override
+	public List<Game> findByNomGameContains(String nom) {
+		return gameRepository.findByNomGameContains(nom);
+	}
+	@Override
+	public List<Game> findByNomPrix(String nom, Double prix) {
+		return gameRepository.findByNomPrix(nom, prix);
+	}
+	@Override
+	public List<Game> findByGenre(Genre genre) {
+		return gameRepository.findByGenre(genre);
+	}
+	@Override
+	public List<Game> findByGenreIdGenre(Long id) {
+		return gameRepository.findByGenreIdGen(id);
+	}
+	@Override
+	public List<Game> findByOrderByNomGameAsc() {
+		return gameRepository.findByOrderByNomGameAsc();
+	}
+	@Override
+	public List<Game> trierGamesNomsPrix() {
+		return gameRepository.trierGamesNomsPrix();
 	}
 }

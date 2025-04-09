@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Game {
@@ -15,6 +16,9 @@ public class Game {
 	private String nomGame;
 	private Double prixGame;
 	private Date datedeSortie;
+	
+	@ManyToOne
+	private Genre genre;
 	
 	public Game() {
 		super();
@@ -30,24 +34,31 @@ public class Game {
 	public Long getIdGame() {
 		return idGame;
 	}
+	
 	public void setIdGame(Long idGame) {
 		this.idGame = idGame;
 	}
+	
 	public String getNomGame() {
 		return nomGame;
 	}
+	
 	public void setNomGame(String nomGame) {
 		this.nomGame = nomGame;
 	}
+	
 	public Double getPrixGame() {
 		return prixGame;
 	}
+	
 	public void setPrixGame(Double prixGame) {
 		this.prixGame = prixGame;
 	}
+	
 	public Date getDatedeSortie() {
 		return datedeSortie;
 	}
+	
 	public void setDatedeSortie(Date datedeSortie) {
 		this.datedeSortie = datedeSortie;
 	}
@@ -56,6 +67,14 @@ public class Game {
 	public String toString() {
 		return "Game [idGame=" + idGame + ", nomGame=" + nomGame + ", prixGame=" + prixGame + ", datedeSortie="
 				+ datedeSortie + "]";
+	}
+	
+	public Genre getGenre() {
+		return genre;
+	}
+
+	public void setGenre(Genre genre) {
+		this.genre = genre;
 	}
 	
 }
