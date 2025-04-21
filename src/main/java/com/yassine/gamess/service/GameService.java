@@ -37,4 +37,6 @@ public interface GameService {
 
 	List<Game> trierGamesNomsPrix();
 
+	List<Genre> getAllGenres();
+	
 }

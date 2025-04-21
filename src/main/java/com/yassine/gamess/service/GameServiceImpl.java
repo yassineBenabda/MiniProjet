@@ -10,12 +10,16 @@ import org.springframework.stereotype.Service;
 import com.yassine.gamess.entities.Game;
 import com.yassine.gamess.entities.Genre;
 import com.yassine.gamess.repos.GameRepository;
+import com.yassine.gamess.repos.GenreRepository;
 
 @Service
 public class GameServiceImpl implements GameService {
 
 	@Autowired
 	GameRepository gameRepository;
+	
+	@Autowired
+	GenreRepository genreRepository;
 
 	@Override
 	public Game saveGame(Game g) {
@@ -80,4 +84,10 @@ public class GameServiceImpl implements GameService {
 	public List<Game> trierGamesNomsPrix() {
 		return gameRepository.trierGamesNomsPrix();
 	}
+
+	@Override
+	public List<Genre> getAllGenres() {
+		return genreRepository.findAll() ;
+	}
+	
 }
