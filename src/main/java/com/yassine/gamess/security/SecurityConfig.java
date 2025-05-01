@@ -32,9 +32,9 @@ public class SecurityConfig {
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/all/**").hasAnyAuthority("ADMIN", "USER")
-                .requestMatchers(HttpMethod.GET, "/api/getbyid/**").hasAnyAuthority("ADMIN", "USER")
-                .requestMatchers(HttpMethod.POST, "/api/addgame/**").hasAuthority("ADMIN")
+                .requestMatchers("/api/all/**").hasAnyAuthority("ADMIN","AGENT", "USER")
+                .requestMatchers(HttpMethod.GET, "/api/getbyid/**").hasAnyAuthority("ADMIN","AGENT", "USER")
+                .requestMatchers(HttpMethod.POST, "/api/addgame/**").hasAnyAuthority("ADMIN", "AGENT")
                 .requestMatchers(HttpMethod.PUT, "/api/updategame/**").hasAuthority("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/api/deletegame/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
