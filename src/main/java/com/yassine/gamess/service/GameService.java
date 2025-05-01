@@ -4,22 +4,23 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
+import com.yassine.gamess.dto.GameDTO;
 import com.yassine.gamess.entities.Game;
 import com.yassine.gamess.entities.Genre;
 
 public interface GameService {
 
-	Game saveGame(Game g);
+	GameDTO saveGame(GameDTO g);
 
-	Game updateGame(Game g);
+	GameDTO updateGame(GameDTO g);
+
+	GameDTO getGame(Long id);
+
+	List<GameDTO> getAllGames();
 
 	void deleteGame(Game g);
 
 	void deleteGameById(Long id);
-
-	Game getGame(Long id);
-
-	List<Game> getAllGames();
 
 	Page<Game> getAllGamesParPage(int page, int size);
 
@@ -38,5 +39,9 @@ public interface GameService {
 	List<Game> trierGamesNomsPrix();
 
 	List<Genre> getAllGenres();
-	
+
+	GameDTO convertEntityToDto(Game g);
+
+	Game convertDtoToEntity(GameDTO gameDto);
+
 }

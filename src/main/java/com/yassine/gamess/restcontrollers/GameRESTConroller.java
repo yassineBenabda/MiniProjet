@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yassine.gamess.dto.GameDTO;
 import com.yassine.gamess.entities.Game;
 import com.yassine.gamess.service.GameService;
 
@@ -26,24 +26,24 @@ public class GameRESTConroller {
 	@Autowired
 	GameService gameService;
 	
-	@RequestMapping(method=RequestMethod.GET)
-	List<Game> getAllGames() {
+	@GetMapping
+	List<GameDTO> getAllGames() {
 		return gameService.getAllGames();
 	}
 	
 	@GetMapping("/{id}")
-	public Game getGameById(@PathVariable("id") Long id) {
+	public GameDTO getGameById(@PathVariable("id") Long id) {
 		return gameService.getGame(id);
 	}
 	
 	@PostMapping("/addgame")
-	public Game createGame(@RequestBody Game game) {
-		return gameService.saveGame(game);
+	public GameDTO createGame(@RequestBody GameDTO gameDTO) {
+		return gameService.saveGame(gameDTO);
 	}
 	
 	@PutMapping("/updategame")
-	public Game updateGame(@RequestBody Game game) {
-		return gameService.updateGame(game);
+	public GameDTO updateGame(@RequestBody GameDTO gameDTO) {
+		return gameService.updateGame(gameDTO);
 	}
 	
 	@DeleteMapping("/deletegame/{id}")
